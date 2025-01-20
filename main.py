@@ -64,7 +64,23 @@ class Clickerpy:
         self.reset_test_button = tk.Button(master, text="Reset Test", command=self.reset_test)
         self.reset_test_button.pack()
 
+        self.lock_button = tk.Button(master, text="Lock", command=self.toggle_lock)
+        self.lock_button.pack(pady=10)
+
         self.auto_click_thread = None
+
+        self.is_locked = False
+
+    # Lock
+    def toggle_lock(self):
+        if self.is_locked:
+            self.master.attributes('-topmost', False)  
+            self.lock_button.config(relief="raised", text="Lock")
+            self.is_locked = False
+        else:
+            self.master.attributes('-topmost', True)  
+            self.lock_button.config(relief="sunken", text="Unlock")
+            self.is_locked = True
 
     def open_preferences(self):
         settings_window = tk.Toplevel(self.master)
@@ -102,9 +118,9 @@ class Clickerpy:
         tk.Label(click_type_window, text="Select Click Type:").pack(pady=10)
 
         click_type_var = tk.StringVar(value=self.click_type)
-        tk.Radiobutton(click_type_window, text="Default Click", variable=click_type_var, value="default").pack() # i Click/Set Click Time
-        tk.Radiobutton(click_type_window, text="Custom Click", variable=click_type_var, value="custom").pack() # Custom Click/s
-        tk.Radiobutton(click_type_window, text="Randomize Click", variable=click_type_var, value="random").pack() # Random/Set Click Time
+        tk.Radiobutton(click_type_window, text="Default Click", variable=click_type_var, value="default").pack() 
+        tk.Radiobutton(click_type_window, text="Custom Click", variable=click_type_var, value="custom").pack() 
+        tk.Radiobutton(click_type_window, text="Randomize Click", variable=click_type_var, value="random").pack() 
 
         save_button = tk.Button(click_type_window, text="Save", command=lambda: self.save_click_type(click_type_var.get()))
         save_button.pack(pady=10)
@@ -117,11 +133,13 @@ class Clickerpy:
         appearance_window = tk.Toplevel(self.master)
         appearance_window.title("Appearance Settings")
 
-        tk.Label(appearance_window, text="Background :").pack(pady=10)
+        tk.Label(appearance_window, text="Background:").pack(pady=10)
 
         background_var = tk.StringVar(value=self.theme)
-        tk.Radiobutton(appearance_window, text="Light", variable=background_var, value="light", command=lambda: self.set_theme('light')).pack()
-        tk.Radiobutton(appearance_window, text="Dark", variable=background_var, value="dark", command=lambda: self.set_theme('dark')).pack()
+        tk.Radiobutton(appearance_window, text="Light", variable=background_var, value="light", 
+                       command=lambda: self.set_theme('light')).pack()
+        tk.Radiobutton(appearance_window, text="Dark", variable=background_var, value="dark", 
+                       command=lambda: self.set_theme('dark')).pack()
 
     def set_theme(self, theme):
         self.theme = theme
@@ -144,7 +162,7 @@ class Clickerpy:
         if not self.running:
             self.running = True
             self.start_time = time.time()
-            self.update_stopwatch()
+            self.update_clicker()
             self.auto_click_thread = threading.Thread(target=self.auto_click)
             self.auto_click_thread.start()
 
@@ -172,7 +190,7 @@ class Clickerpy:
             minutes, seconds = divmod(self.elapsed_time, 60)
             milliseconds = (self.elapsed_time - int(self.elapsed_time)) * 100
             self.label.config(text=f"{int(minutes):02d}.{int(seconds):02d}.{int(milliseconds):02d}")
-            self.master.after(10, self.update_stopwatch)
+            self.master.after(10, self.update_clicker)
 
     def auto_click(self):
         while self.running:
@@ -200,4 +218,3 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = Clickerpy(root)
     root.mainloop()
-
