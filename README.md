@@ -4,7 +4,7 @@ Clickerpy is a lightweight, Python-based desktop application designed for automa
 
 ---
 
-## ✨ Features
+## Features
 
 * **Customizable Intervals**
   Set the delay between clicks in seconds.
@@ -32,7 +32,7 @@ Clickerpy is a lightweight, Python-based desktop application designed for automa
 
 ---
 
-## 📦 Prerequisites
+## Prerequisites
 
 Before installing Clickerpy, make sure the following are installed on your system:
 
@@ -44,18 +44,18 @@ Before installing Clickerpy, make sure the following are installed on your syste
 
 ---
 
-## 🖥️ Supported Platforms
+## Supported Platforms
 
 Clickerpy supports multiple operating systems:
 
-* ✅ Windows
-* ✅ Linux
+* Windows
+* Linux
 
 > **Note:** PyAutoGUI and tkinter are supported on Linux, but some desktop environments may require additional permissions or packages.
 
 ---
 
-## 🚀 Installation
+## Installation
 
 Follow these steps to set up Clickerpy on your local machine.
 
@@ -126,7 +126,7 @@ sudo dnf install python3-tkinter
 
 ---
 
-## ▶️ Usage
+## Usage
 
 Run the application using:
 
@@ -136,7 +136,7 @@ python main.py
 
 ---
 
-## 🎮 Controls
+## Controls
 
 | Button            | Function                                    |
 | ----------------- | ------------------------------------------- |
@@ -148,7 +148,7 @@ python main.py
 
 ---
 
-## ⚠️ Safety Note
+## Safety Note
 
 If the script behaves unexpectedly, move your mouse cursor to the **top-left corner (0,0)** of your screen.
 
@@ -156,7 +156,7 @@ This triggers the built-in **PyAutoGUI fail-safe** and immediately stops the pro
 
 ---
 
-## 🛠️ Built With
+## Built With
 
 * Python
 * tkinter
@@ -165,13 +165,13 @@ This triggers the built-in **PyAutoGUI fail-safe** and immediately stops the pro
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions, issues, and feature requests are welcome.
 
@@ -179,6 +179,6 @@ Feel free to fork this repository and submit a pull request.
 
 ---
 
-## ⭐ Support
+## Support
 
 If you find this project useful, consider giving it a star on GitHub.
